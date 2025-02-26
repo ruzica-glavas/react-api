@@ -21,28 +21,23 @@ useEffect(fetchPosts,[])
 
   return (
     <>
-      <table className="table">
-  
+    <table className="table">
+      <thead>
+        <tr>
+          {posts.map((post)=>(
+          <th scope='row' key= {post.id}>{post.title}</th>
+          ))}
+        </tr>
+      </thead>
 
-  <thead>
-    <tr>
-    {posts.map((post)=>(
-      <th scope='row' key= {post.id}>{post.title}</th>
-    ))}
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-    {posts.map((post)=>(
-      <td scope='row' key= {post.id}>{post.content}</td>
-    ))}
-    </tr>
-      
-  </tbody>   
-    
-  
-</table>
+      <tbody>
+        <tr>
+          {posts.map((post)=>(
+          <td scope='row' key= {post.id}>{post.content}</td>
+          ))}
+        </tr>
+      </tbody>   
+  </table>
     </>
   )
 }
