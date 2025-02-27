@@ -13,6 +13,7 @@ function fetchPosts() {
   axios
   .get (`http://localhost:3000/posts`)
   .then ((res) => setPosts (res.data) )
+  .catch (err => console.error(err));
 }
 
 //Chiamata del componente quando carico la pagina
@@ -24,18 +25,25 @@ useEffect(fetchPosts,[])
     <table className="table">
       <thead>
         <tr>
-          {posts.map((post)=>(
-          <th scope='row' key= {post.id}>{post.title}</th>
-          ))}
+          
+          <th scope='row'>ID</th>
+          <th scope='row'>Title</th>
+          <th scope='row'>Content</th>
+          
         </tr>
       </thead>
 
       <tbody>
-        <tr>
+        
+          
           {posts.map((post)=>(
-          <td scope='row' key= {post.id}>{post.content}</td>
+          <tr key={post.id}>
+            <td scope='row' >{post.id}</td>
+            <td scope='row' >{post.title}</td>
+            <td scope='row' >{post.content}</td>
+          </tr>
           ))}
-        </tr>
+        
       </tbody>   
   </table>
     </>
