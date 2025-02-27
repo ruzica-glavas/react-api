@@ -16,6 +16,16 @@ function fetchPosts() {
   .catch (err => console.error(err));
 }
 
+//Funzione per l'handleDelete
+
+const handleDelete = (idSingoloPost) =>{
+  axios
+  .delete (`http://localhost:3000/posts/${idSingoloPost}`)
+  //Riscrittura dell'array. Se l'id é diverso, il post viene aggiunto al nuovo array altrimenti no
+  .then (setPosts(posts.filter ((post => post.id !== idSingoloPost)))) 
+  .catch (err => console.error(err));
+}
+
 //Chiamata del componente quando carico la pagina
 useEffect(fetchPosts,[])
 
@@ -41,6 +51,7 @@ useEffect(fetchPosts,[])
             <td scope='row' >{post.id}</td>
             <td scope='row' >{post.title}</td>
             <td scope='row' >{post.content}</td>
+            <button className="btn btn-danger" onClick={() => handleDelete (post.id)}>Delete</button>
           </tr>
           ))}
         
