@@ -14,7 +14,6 @@ const initialFormData = {
 }
 
 //Creazione di un useState dove si aggiungeranno i dati
-
 const [formData, setFormData] = useState (initialFormData);
 
 
@@ -27,7 +26,6 @@ function fetchPosts() {
 }
 
 //Funzione per l'handleDelete
-
 const handleDelete = (idSingoloPost) =>{
   axios
   .delete (`http://localhost:3000/posts/${idSingoloPost}`)
@@ -37,7 +35,6 @@ const handleDelete = (idSingoloPost) =>{
 }
 
 //Funzione per l'handleSubmit
-
 const handlePost = (event) =>{
   const {name, value} = event.target; //si occupa di recuperare in modo dinamico ciò che si inserisce nell'input
   setFormData({
@@ -47,12 +44,12 @@ const handlePost = (event) =>{
   })
 }
 
-const handleSubmit = (event, idPost) =>{
+const handleSubmit = (event) =>{
   event.preventDefault();  //per  non far ricaricare la pagina
 
   axios
-  .post (`http://localhost:3000/posts/${idPost}`, formData)
-  .then (fetchPosts())
+  .post (`http://localhost:3000/posts`, formData)
+  .then (() =>fetchPosts())
   .catch (err => console.error(err));
 
   setFormData(initialFormData);
@@ -91,13 +88,13 @@ useEffect(fetchPosts,[])
   </table>
 
   {/* Form per l'aggiunta di elementi */}
-
   <form onSubmit={handleSubmit}>
     <input type='text' name='title' onChange={handlePost} value={formData.title} placeholder='Nome Posts'></input>
     <input type='text' name='content' onChange={handlePost} value={formData.content} placeholder='Content Posts'></input>
+    <button className="btn btn-primary" type='submit'>Aggiungi</button>
   </form>
 
-  <button className="btn btn-primary" type='submit'>Aggiungi</button>
+  
     </>
   )
 }
