@@ -38,8 +38,24 @@ const handleDelete = (idSingoloPost) =>{
 
 //Funzione per l'handleSubmit
 
-const handlePost = () =>{
+const handlePost = (event) =>{
+  const {name, value} = event.target; //si occupa di recuperare in modo dinamico ciò che si inserisce nell'input
+  setFormData({
+    ...formData,
+    [name]: value,
+    
+  })
+}
 
+const handleSubmit = (event, idPost) =>{
+  event.preventDefault();  //per  non far ricaricare la pagina
+
+  axios
+  .post (`http://localhost:3000/posts/${idPost}`, formData)
+  .then (fetchPosts())
+  .catch (err => console.error(err));
+
+  setFormData(initialFormData);
 }
 
 //Chiamata del componente quando carico la pagina
