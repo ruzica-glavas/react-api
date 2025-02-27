@@ -38,7 +38,7 @@ const handleDelete = (idSingoloPost) =>{
 
 //Funzione per l'handleSubmit
 
-const handleSubmit = () =>{
+const handlePost = () =>{
 
 }
 
@@ -77,8 +77,8 @@ useEffect(fetchPosts,[])
   {/* Form per l'aggiunta di elementi */}
 
   <form onSubmit={handleSubmit}>
-    <input type='text' name='title' onChange={handleSubmit} value={formData.title} placeholder='Nome Posts'></input>
-    <input type='text' name='content' onChange={handleSubmit} value={formData.content} placeholder='Content Posts'></input>
+    <input type='text' name='title' onChange={handlePost} value={formData.title} placeholder='Nome Posts'></input>
+    <input type='text' name='content' onChange={handlePost} value={formData.content} placeholder='Content Posts'></input>
   </form>
 
   <button className="btn btn-primary">Aggiungi</button>
