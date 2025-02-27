@@ -81,7 +81,7 @@ useEffect(fetchPosts,[])
     <input type='text' name='content' onChange={handlePost} value={formData.content} placeholder='Content Posts'></input>
   </form>
 
-  <button className="btn btn-primary">Aggiungi</button>
+  <button className="btn btn-primary" type='submit'>Aggiungi</button>
     </>
   )
 }
