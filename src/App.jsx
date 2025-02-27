@@ -7,6 +7,16 @@ function App() {
 //Creazione di un array per la crezione dei posts
 const [posts, setPosts] = useState([])
 
+//Dove aggiungere gli elementi nuovi che andremo ad aggiungere negli input (é un oggetto perché nel backend la lista ha questa forma)
+const initialFormData = {
+  title: ``,
+  content: ``
+}
+
+//Creazione di un useState dove si aggiungeranno i dati
+
+const [formData, setFormData] = useState (initialFormData);
+
 
 //Creazione funzione per api di posts
 function fetchPosts() {
@@ -24,6 +34,12 @@ const handleDelete = (idSingoloPost) =>{
   //Riscrittura dell'array. Se l'id é diverso, il post viene aggiunto al nuovo array altrimenti no
   .then (setPosts(posts.filter ((post => post.id !== idSingoloPost)))) 
   .catch (err => console.error(err));
+}
+
+//Funzione per l'handleSubmit
+
+const handleSubmit = () =>{
+
 }
 
 //Chiamata del componente quando carico la pagina
@@ -57,6 +73,15 @@ useEffect(fetchPosts,[])
         
       </tbody>   
   </table>
+
+  {/* Form per l'aggiunta di elementi */}
+
+  <form onSubmit={handleSubmit}>
+    <input type='text' name='title' onChange={handleSubmit} value={formData.title} placeholder='Nome Posts'></input>
+    <input type='text' name='content' onChange={handleSubmit} value={formData.content} placeholder='Content Posts'></input>
+  </form>
+
+  <button className="btn btn-primary">Aggiungi</button>
     </>
   )
 }
