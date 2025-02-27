@@ -10,7 +10,7 @@ const [posts, setPosts] = useState([])
 //Dove aggiungere gli elementi nuovi che andremo ad aggiungere negli input (é un oggetto perché nel backend la lista ha questa forma)
 const initialFormData = {
   title: ``,
-  content: ``
+  content: ``,
 }
 
 //Creazione di un useState dove si aggiungeranno i dati
@@ -34,7 +34,7 @@ const handleDelete = (idSingoloPost) =>{
   .catch (err => console.error(err));
 }
 
-//Funzione per l'handleSubmit
+//Funzione per l'handlePost, quindi per l'aggiunta di un posts
 const handlePost = (event) =>{
   const {name, value} = event.target; //si occupa di recuperare in modo dinamico ciò che si inserisce nell'input
   setFormData({
@@ -44,12 +44,14 @@ const handlePost = (event) =>{
   })
 }
 
+
+//Funzione per l'handleSubmit, quindi per la modifica del form
 const handleSubmit = (event) =>{
   event.preventDefault();  //per  non far ricaricare la pagina
 
   axios
   .post (`http://localhost:3000/posts`, formData)
-  .then (() =>fetchPosts())
+  .then (() =>fetchPosts()) //callback function
   .catch (err => console.error(err));
 
   setFormData(initialFormData);
